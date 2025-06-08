@@ -366,7 +366,7 @@ strong {
   display: block;
   height: 2px;
   background: linear-gradient(to right, var(--white), var(--flamin-orange-hsla));
-  margin-top: 4px;
+  margin-top: 2em;
 }
 .navbar-item {   border-block-start: 1px solid var(--white-soft);}
 
