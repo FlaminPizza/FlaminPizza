@@ -184,6 +184,7 @@ strong {
   height: 7px;
   background: linear-gradient( to right, transparent, var(--flamin-orange-hsla), transparent );
   margin-block: 13rem; /* Adds space above and below */
+  color: black;
  }
 
 
