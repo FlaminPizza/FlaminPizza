@@ -60,6 +60,7 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: auto;
+  
 }
 li {list-style: none;}
 
@@ -353,6 +354,8 @@ strong {
   
 }
 
+
+
 .navbar .logo {
   max-width: max-content;
   margin-inline: auto;
@@ -638,7 +641,7 @@ strong {
 
 
 
-
+ 
 
 
 
@@ -908,6 +911,54 @@ overflow: hidden;
   
 }
 
+/* JUST EAT */
+.order-container {
+  text-align: center;
+  font-family: var(--robo-family);
+  margin: 20px;
+}
+
+.order-text {
+  color: var(--white);
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px
+  
+}
+.order-subtext {
+  display: block;
+  margin-top: 2em;
+  margin-bottom: 4em;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--white); 
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.order-link:hover .order-subtext {
+  color: var(--flamin-orange-hsla); 
+  transform: scale(2); 
+}
+
+
+.order-img {
+  display: block;
+  margin: 0 auto;
+  width: 140px;
+  height: auto;
+  cursor: pointer;
+  margin-top: 1em;
+  border-radius: 30%;
+  border: 2px solid var(--flamin-orange-hsla);
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+
+
+.order-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
 
 
 
