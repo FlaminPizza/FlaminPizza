@@ -172,11 +172,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-  window.addEventListener('load', function () {
+ window.addEventListener('load', () => {
+  setTimeout(() => {
     const hero = document.getElementById("home");
     if (hero) {
-      hero.scrollIntoView({ behavior: "auto" });
+      hero.scrollIntoView({ behavior: "smooth" });
     }
-  });
+  }, 150);
+});
 
 
