@@ -337,7 +337,7 @@ strong {
   top: 0;
   left: -360px;
   bottom: 0;
-  max-width: 360px;
+  max-width: auto;
   width: 100%;
   padding-inline: 30px;
   padding-block-end: 50px;
@@ -349,7 +349,9 @@ strong {
 .navbar.active {
   visibility: visible;
   transform: translateX(360px); /*make the button clickable */
+  
 }
+
 
 .navbar .close-btn {
   color: var(--flamin-orange-hsla);
@@ -458,7 +460,7 @@ strong {
   left: 0;
   bottom: 0;
   right: 0;                     /* Stretch to cover full screen */
-  background-color: var(--grayish-red); /* Semi-transparent black background */
+  
   opacity: 0;                   /* Initially invisible */
   pointer-events: none;         /* Clicks pass through it (not interactable) */
   transition: 500ms; /* Smooth fade transition when opacity changes */
@@ -1081,70 +1083,18 @@ address.body-4 {
 .footer-link:is(:hover, :focus-visible) { color: var(--flamin-orange-hsla);}
 
 ul {
-  margin-bottom: 40px ; 
+  margin-bottom: 10px ; 
   margin-top: 40px;
 }
 
 ul li {
-  margin-bottom: 15px; /* space below each list item */
+  margin-bottom: 20px; /* space below each list item */
 }
 
 /* Optional: remove margin after last li so no extra space at bottom */
 ul li:last-child {
   margin-bottom: 0;
 }
-
-
-
-
-/*back to top html is commented*/
-#backToTop {
-  /* Remove fixed positioning */
-  position: static;          /* or just remove this line */
-  margin: 20px auto 0;       /* 20px top margin, horizontally centered */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 48px;
-  height: 48px;
-  background: var(--flamin-orange-hsla, #ff6a00);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow:
-    0 0 10px var(--flamin-orange-hsla, #ff6a00),
-    0 0 20px var(--flamin-orange-hsla, #ff6a00);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-#backToTop:hover {
-  background: hsla(24, 100%, 60%, 1);
-  box-shadow:
-    0 0 20px var(--flamin-orange-hsla, #ff6a00),
-    0 0 40px var(--flamin-orange-hsla, #ff6a00);
-}
-
-/* Chevron arrow pointing straight up */
-#backToTop::before {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 14px solid white;
-}
-/*back to top*/
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1189,59 +1139,10 @@ ul li:last-child {
 
 
 
- /**
-  *   Topbar
-  **/
-
-.topbar{
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding-block: 10px;
-  border-block-end: 1px solid var(--white);
-  z-index: 4;
-  transition: 250ms;
-}
-
-.topbar:has(~ .header.active) { transform: translateY(-100%); }
-
-.topbar-item:not(.link),
-.topbar .separator { display: none;}
-
-
-.topbar .container,
-.topbar-item {
-  display: flex;
-  align-items: center;
-}
-
-
-.topbar .container {
-  justify-content: center;
-  gap: 30px;
-}
-
-.topbar-item { gap:6px }
-
-
-
-.topbar-item .span {
-  font-size: 1.4rem;
-}
-
-.topbar .link { transition: 250ms;}
-
-
-.topbar .link:is(:hover, :focus-visible) {
-  color: var(--flamin-orange-hsla);
-}
-
-
+ 
  
 /**
-  *  Service
+  *  About us
 **/
 
 .service .container {
@@ -1251,7 +1152,7 @@ ul li:last-child {
 
 
 /**
-  *  about
+  *  our story
 **/
 
 .about .container { gap: 80px;}
@@ -1295,7 +1196,7 @@ ul li:last-child {
 
 
 /**
-  *  event
+  *  upcoming events
 **/
 
 .event .container {
@@ -1316,12 +1217,6 @@ ul li:last-child {
 }
 
 
-.footer .input-wrapper { position: relative;}
-
-.footer .input-field {
-  margin-block-end: 0;
-  padding-inline-end: 205px;
-}
 
 
 
@@ -1371,15 +1266,7 @@ ul li:last-child {
     color: var(--black);
   }
 
-  .reservation .input-wrapper{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
-  }
-  .reservation .input-wrapper:nth-child(4){
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+ 
   .footer-brand {grid-column: 1 / 3;}
 
 }
@@ -1406,18 +1293,9 @@ ul li:last-child {
     width: 100%;
   }
 
-  .topbar-item:not(.link) { display: flex;}
-  .topbar .item-2 { margin-inline-end: auto;}
 
-  .service .shape { display: block;}
-  .service  .shape-1 {
-    bottom: 0;
-    left: 0;
-  }
-  .service .shape-2 {
-    top: 0;
-    right: 0;
-  }
+
+  
 
   .about .container {
     grid-template-columns: 0.7fr 1fr;
@@ -1463,10 +1341,6 @@ ul li:last-child {
     margin-inline: auto;
   }
 
-  .reservation-form {
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
-  }
 
   /*this arrange home, menus, ... on the right*/
   .footer .grid-list {
@@ -1503,9 +1377,7 @@ ul li:last-child {
     margin-inline: auto;
   }
 
-  .topbar .container { max-width: unset;}
 
-  .topbar .separator { display: block;}
 
   .nav-open-btn,
   .navbar > *:not(.navbar-list),
@@ -1523,6 +1395,8 @@ ul li:last-child {
   .navbar-list {
     display: flex;
     gap: 30px;
+    background-color: var(--flamin-orange-hsla);
+    padding-left: 20px;    
   }
 
   .navbar-item { border-block-start: none;}
@@ -1531,7 +1405,7 @@ ul li:last-child {
 
   .navbar-link:is(:hover, :focus-visible, .active) .span
   {
-    transform: unset;
+    transform: unset; color: var(--white);
   }
 
   .navbar-link {
@@ -1585,7 +1459,7 @@ ul li:last-child {
 
 
 
-    .form-left,
+   
     .form-right {padding: 75px 60px;}
 
 
@@ -1607,11 +1481,7 @@ ul li:last-child {
 .about-content { padding-inline-end: 90px;}
 
 
-.about .shape {
-  display: block;
-  top: 46%;
-  left: 0;
-}
+
 
 
 
@@ -1626,13 +1496,6 @@ ul li:last-child {
   right: 0;
   z-index: 1;
 }
-.special-dish .shape-1 {top: 45;}
-.special-dish .shape-2 {
-  bottom: 0;
-  transform: translateY(50%);
-  width: max-content;
-}
-/*bring the plate between slides*/
 
 
 

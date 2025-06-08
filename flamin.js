@@ -37,6 +37,15 @@ const addEventOnElements = (elements, eventType, callback) => {
 
 
  /*--------navbar close-btn icon and open-btn 3 lines-----------------*/
+/*link navbar left with section */
+document.querySelectorAll('.navbar-link').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.navbar').classList.remove('active');
+    document.querySelector('.header').classList.remove('active');
+  });
+});
+
+
  
 // Select the main navigation menu using the data attribute
 const navbar = document.querySelector("[data-navbar]");
