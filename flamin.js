@@ -169,3 +169,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+/** After refresh the page start from top */
+  window.addEventListener('load', function () {
+    const hero = document.getElementById("home");
+    if (hero) {
+      hero.scrollIntoView({ behavior: "auto" });
+    }
+  });
