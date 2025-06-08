@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flaminpizza.github.io/FlaminPizza/sitemap.xml
