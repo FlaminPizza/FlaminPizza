@@ -172,7 +172,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
- window.addEventListener('load', () => {
+
+
+window.addEventListener('load', () => {
   setTimeout(() => {
     const hero = document.getElementById("home");
     if (hero) {
@@ -180,5 +182,3 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }, 150);
 });
-
-
