@@ -1148,13 +1148,18 @@ strong {
 }
 
 .hover-underline-number:hover {
-  font-size: 2.5rem;
-  background-color: var(--white-soft);
+  font-size: 3rem;
+  background-color: var(--white);
+  transform: scale(1.1); 
+  transition: transform 0.2s ease-in-out; 
 }
 
+
 .hover-underline-mail:hover {
-  background-color: var(--white-soft);
-}
+  background-color: var(--white);
+  transform: scale(1.1); 
+  transition: transform 0.2s ease-in-out; 
+}}
 
 address.body-4 {
   margin: 1em;
@@ -1191,6 +1196,39 @@ address.body-4 {
 .footer-link:is(:hover, :focus-visible) {
   color: var(--flamin-orange-hsla);
 }
+
+.footer-bottom {
+  padding-bottom: 4rem; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*-----------------------------------*\
   # 17. MEDIA QUERIES
