@@ -491,7 +491,7 @@ strong {
 
 .nav-open-btn {
   padding: 10px;
-  padding-inline-end: 1;
+  padding-inline-end: 1px;
   background-color: var(--flamin-orange-hsla);
   border-radius: 40%;
 }
@@ -1159,7 +1159,7 @@ strong {
   background-color: var(--white);
   transform: scale(1.1); 
   transition: transform 0.2s ease-in-out; 
-}}
+}
 
 address.body-4 {
   margin: 1em;
