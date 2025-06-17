@@ -1,184 +1,174 @@
-'use strict';
-
-/**--------preloader--------------- */
-// Select the preloader element using a data attribute
-const preloader = document.querySelector("[data-preload]");
-
-// Listen for the window 'load' event, which fires when the entire page (images, scripts, etc.) has fully loaded
-window.addEventListener("load", function () {
-  // If the preloader element exists
-  if (preloader) {
-    // Add the 'loaded' class to trigger hiding or animation of the preloader
-    preloader.classList.add("loaded");
-  }
-  // Add 'loaded' class to the body, often used to enable page content or trigger animations
-  document.body.classList.add("loaded");
-});
-
-
-
-
-
-/**--------add event listener on multiple elements--------------- */
-
-// Adds an event listener to multiple elements at once
-const addEventOnElements = (elements, eventType, callback) => {
-  // Loop through each element in the NodeList or array
-  elements.forEach(el => 
-    // Attach the specified event listener and callback function to each element
-    el.addEventListener(eventType, callback)
-  );
-}
-
-
-
-
-
-
-
- /*--------navbar close-btn icon and open-btn 3 lines-----------------*/
-/*link navbar left with section */
-document.querySelectorAll('.navbar-link').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.navbar').classList.remove('active');
-    document.querySelector('.header').classList.remove('active');
-  });
-});
-
-
- 
-// Select the main navigation menu using the data attribute
-const navbar = document.querySelector("[data-navbar]");
-
-// Select all elements that should toggle the navbar (e.g., open & close buttons)
-const navTogglers = document.querySelectorAll("[data-nav-toggler]");
-
-// Select the overlay element that covers the page when the menu is open
-const overlay = document.querySelector("[data-overlay]");
-
-// Function to toggle the 'active' state of navbar, overlay, and body
-const toggleNavbar = function () {
-  navbar.classList.toggle("active");        // Show/hide the navbar
-  overlay.classList.toggle("active");       // Show/hide the dark background overlay
-  document.body.classList.toggle("nav-active"); // Optional: prevent page scrolling
-};
-
-// Add the toggleNavbar function to all nav toggler buttons (open/close)
-addEventOnElements(navTogglers, "click", toggleNavbar);
-
-
-
-
-
-
-/*----------- Header-----------------------*/
-
-// Select the header element using a data attribute
-const header = document.querySelector("[data-header]");
-
-// Track the previous scroll position to detect scroll direction
-let lastScrollPos = 0;
-
-// Function to show/hide header based on scroll direction
-const hideHeader = function () {
-  // Check if user is scrolling down
-  const isScrollBottom = lastScrollPos < window.scrollY;
-
-  if (isScrollBottom) {
-    // Hide header when scrolling down
-    header.classList.add("hide");
-  } else {
-    // Show header when scrolling up
-    header.classList.remove("hide");
-  }
-
-  // Update the last scroll position
-  lastScrollPos = window.scrollY;
-};
-
-// Listen for window scroll events
-window.addEventListener("scroll", function () {
-  if (window.scrollY >= 50) {
-    // When scrolled more than 50px, make the header active (e.g., sticky or styled)
-    header.classList.add("active");
-
-    // Call function to hide/show header based on scroll direction
-    hideHeader();
-  } else {
-    // Remove active styling when back at the top of the page
-    header.classList.remove("active");
-  }
-});
-
-
-/*----------- Hero-----------------------*/
-
-const heroSlider = document.querySelector("[data-hero-slider]");
-
-const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
-
-const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
-
-const heroSliderNextBtn = document.querySelector("[data-next-btn]");
-
-
-let currentSlidePos = 0;
-let lastActiveSliderItem = heroSliderItems[0];
-
-const updateSliderPos = function (){
-  lastActiveSliderItem.classList.remove("active");
-  heroSliderItems[currentSlidePos].classList.add("active");
-  lastActiveSliderItem = heroSliderItems[currentSlidePos];
-}
-
-const slideNext = function (){
-  if (currentSlidePos>= heroSliderItems.length -1){
-    currentSlidePos = 0;
-  } else {
-    currentSlidePos++;
-  }
-
-  updateSliderPos();
-}
-
-
-
-
 /**
- * auto slide bellow
+ * @file This script provides interactivity for the Flamin'Pizza Co website.
+ * @summary It handles the preloader, navigation menu, header behavior, hero slider, and other UI enhancements.
+ * @author [Your Name/Company]
+ * @version 1.0.0
  */
 
-let autoSlideInterval;
+'use strict';
 
-const autoSlide = function (){
-  autoSlideInterval = setInterval(function() {
-    slideNext();
-  }, 7000);
-}
+(function () {
+  /**
+   * ---------------------------------------------------------------------
+   * HELPER FUNCTION: Add event listener on multiple elements
+   * ---------------------------------------------------------------------
+   * A utility function to attach an event listener to an array or NodeList of elements.
+   * @param {NodeList|Array} elements - The elements to attach the event to.
+   * @param {string} eventType - The type of event (e.g., 'click').
+   * @param {function} callback - The function to execute when the event fires.
+   */
+  const addEventOnElements = (elements, eventType, callback) => {
+    elements.forEach(el => el.addEventListener(eventType, callback));
+  };
 
+  /**
+   * Execute scripts after the DOM has fully loaded to ensure all elements are available.
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    /**
+     * ---------------------------------------------------------------------
+     * PRELOADER
+     * ---------------------------------------------------------------------
+     * Hides the preloader animation once the page content has fully loaded.
+     */
+    const preloader = document.querySelector('[data-preload]');
 
-window.addEventListener("load", autoSlide);
-
-
-/** Button go to top */
-document.addEventListener('DOMContentLoaded', function () {
-  const backToTopBtn = document.getElementById('backToTop');
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.addEventListener('load', function () {
+      if (preloader) {
+        preloader.classList.add('loaded');
+      }
+      document.body.classList.add('loaded');
     });
-  }
-});
 
+    /**
+     * ---------------------------------------------------------------------
+     * HEADER & MOBILE NAVIGATION
+     * ---------------------------------------------------------------------
+     * Handles the mobile navigation toggle and the header's sticky/hide behavior on scroll.
+     */
+    const navbar = document.querySelector('[data-navbar]');
+    const navTogglers = document.querySelectorAll('[data-nav-toggler]');
+    const overlay = document.querySelector('[data-overlay]');
+    const navLinks = document.querySelectorAll('.navbar-link');
 
+    // Function to toggle the mobile navigation menu
+    const toggleNavbar = function () {
+      navbar.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.classList.toggle('nav-active');
+    };
 
+    addEventOnElements(navTogglers, 'click', toggleNavbar);
 
+    // Close the mobile menu when a navigation link is clicked
+    addEventOnElements(navLinks, 'click', function () {
+      if (navbar.classList.contains('active')) {
+        toggleNavbar();
+      }
+    });
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const hero = document.getElementById("home");
-    if (hero) {
-      hero.scrollIntoView({ behavior: "smooth" });
+    // Header scroll behavior
+    const header = document.querySelector('[data-header]');
+    let lastScrollPos = 0;
+
+    const handleHeaderScroll = function () {
+      const isScrollBottom = lastScrollPos < window.scrollY;
+
+      if (isScrollBottom) {
+        header.classList.add('hide'); // Hide on scroll down
+      } else {
+        header.classList.remove('hide'); // Show on scroll up
+      }
+
+      lastScrollPos = window.scrollY;
+    };
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY >= 50) {
+        header.classList.add('active'); // Add sticky/styled class
+        handleHeaderScroll();
+      } else {
+        header.classList.remove('active'); // Remove sticky class
+      }
+    });
+
+    /**
+     * ---------------------------------------------------------------------
+     * HERO SLIDER
+     * ---------------------------------------------------------------------
+     * Manages the functionality of the main hero image slider, including auto-sliding.
+     */
+    const heroSliderItems = document.querySelectorAll('[data-hero-slider-item]');
+
+    if (heroSliderItems.length > 0) {
+      let currentSlidePos = 0;
+      let lastActiveSliderItem = heroSliderItems[0];
+      let autoSlideInterval;
+
+      // Function to update the active slide
+      const updateSliderPos = function () {
+        if (lastActiveSliderItem) {
+          lastActiveSliderItem.classList.remove('active');
+        }
+        heroSliderItems[currentSlidePos].classList.add('active');
+        lastActiveSliderItem = heroSliderItems[currentSlidePos];
+      };
+
+      // Function to move to the next slide
+      const slideNext = function () {
+        currentSlidePos = (currentSlidePos >= heroSliderItems.length - 1) ? 0 : currentSlidePos + 1;
+        updateSliderPos();
+      };
+
+      // Function to start the auto-sliding mechanism
+      const startAutoSlide = function () {
+        autoSlideInterval = setInterval(slideNext, 7000); // 7 seconds per slide
+      };
+
+      // Stop auto-sliding (useful if adding manual controls later)
+      const stopAutoSlide = function () {
+        clearInterval(autoSlideInterval);
+      };
+      
+      // Initialize the slider on window load
+      window.addEventListener('load', startAutoSlide);
     }
-  }, 150);
-});
+    
+    /**
+     * ---------------------------------------------------------------------
+     * MISCELLANEOUS UI ENHANCEMENTS
+     * ---------------------------------------------------------------------
+     */
+
+    // Smooth scroll to the hero section on page load for a nice entry effect
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const hero = document.getElementById('home');
+        if (hero) {
+          hero.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    });
+
+    // Note: The 'Back to Top' button functionality from the original script
+    // was commented out in the provided HTML. If you add it back,
+    // the following code will make it work.
+    /*
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Optional: Show/hide button based on scroll position
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+    }
+    */
+  });
+})();
