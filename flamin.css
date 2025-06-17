@@ -1176,13 +1176,12 @@ address.body-4 {
   margin-top: 40px;
 }
 
-.footer ul li {
-  margin-bottom: 20px;
+.footer ul li,
+.footer-list li {
+  margin-bottom: 2rem;
 }
 
-.footer ul li:last-child {
-  margin-bottom: 0;
-}
+
 
 .footer-link {
   color: var(--grayish-redish);
@@ -1196,6 +1195,7 @@ address.body-4 {
 .footer-link:is(:hover, :focus-visible) {
   color: var(--flamin-orange-hsla);
 }
+
 
 .footer-bottom {
   padding-bottom: 4rem; 
